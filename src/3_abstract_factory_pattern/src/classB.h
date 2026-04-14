@@ -3,8 +3,8 @@
 class ClassB
 {
 public:
-    virtual void print() = 0;
-    virtual ~ClassB()   = default;
+    virtual void print() const = 0;
+    virtual ~ClassB()          = default;
 };
 
 class ClassB1 : public ClassB
@@ -13,7 +13,7 @@ public:
     ClassB1(int x);
     ClassB1(float y);
 
-    void print() override;
+    void print() const override;
 
 private:
     union
@@ -29,7 +29,7 @@ class ClassB2 : public ClassB
 public:
     ClassB2(double x);
 
-    void print() override;
+    void print() const override;
 
 private:
     double m_x;

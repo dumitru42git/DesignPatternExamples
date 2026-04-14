@@ -10,9 +10,9 @@
 
 using Json = nlohmann::json;
 
-std::unique_ptr<Factory> pick_factory(int factoryType);
-void                     build_call_objects(auto& factory, auto& objectArrayJson);
-void                     routine(Json& json);
+void                     build_call_from_json(const Json& json);
+void                     build_call_objects(const Factory& factory, const Json& objectArrayJson);
+std::unique_ptr<Factory> construct_factory(const Json& json);
 
 int main()
 {
@@ -35,43 +35,43 @@ int main()
     json3["factory"] = 3;
     // clang-format on
 
-    routine(json1);
-    routine(json2);
-    routine(json3);
+    build_call_from_json(json1);
+    build_call_from_json(json2);
+    build_call_from_json(json3);
 
     return 0;
 }
 
-void routine(Json& json)
+void build_call_from_json(const Json& json)
 {
-    auto                     factoryType = json["factory"].get<int>();
-    std::unique_ptr<Factory> factory     = pick_factory(factoryType);
+    std::unique_ptr<Factory> factory = construct_factory(json);
 
     auto objectArrayJson = json["objects"];
-    build_call_objects(factory, objectArrayJson);
+    build_call_objects(*factory, objectArrayJson);
 }
 
-
-void build_call_objects(auto& factory, auto& objectArrayJson)
+void build_call_objects(const Factory& factory, const Json& objectArrayJson)
 {
-    for (auto& objectJson : objectArrayJson)
+    for (const auto& objectJson : objectArrayJson)
     {
         if (objectJson["type"] == "A")
         {
-            auto object = factory->buildA(objectJson);
+            auto object = factory.buildA(objectJson);
             object->print();
         }
         else if (objectJson["type"] == "B")
         {
-            auto object = factory->buildB(objectJson);
+            auto object = factory.buildB(objectJson);
             object->print();
         }
     }
 }
 
-std::unique_ptr<Factory> pick_factory(int factoryType)
+std::unique_ptr<Factory> construct_factory(const Json& json)
 {
     std::unique_ptr<Factory> factory;
+
+    const auto factoryType = json["factory"].get<int>();
     switch (factoryType)
     {
         case 1:
@@ -84,5 +84,6 @@ std::unique_ptr<Factory> pick_factory(int factoryType)
             factory = std::make_unique<Factory3>();
             break;
     }
+
     return factory;
 }
