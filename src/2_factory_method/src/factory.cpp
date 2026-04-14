@@ -1,16 +1,16 @@
 #include "factory.h"
 
-std::unique_ptr<Class> Factory1::build(Json& json)
+std::unique_ptr<Class> Factory1::build(const Json& json) const
 {
     return std::make_unique<ClassA>(0, 0);
 }
 
-std::unique_ptr<Class> Factory2::build(Json& json)
+std::unique_ptr<Class> Factory2::build(const Json& json) const
 {
     return std::make_unique<ClassB>(0.0f);
 }
 
-std::unique_ptr<Class> Factory3::build(Json& json)
+std::unique_ptr<Class> Factory3::build(const Json& json) const
 {
     std::unique_ptr<Class> object;
 
@@ -34,7 +34,7 @@ std::unique_ptr<Class> Factory3::build(Json& json)
     return object;
 }
 
-std::unique_ptr<Class> Factory4::build(Json& json)
+std::unique_ptr<Class> Factory4::build(const Json& json) const
 {
     std::unique_ptr<Class> object;
 
