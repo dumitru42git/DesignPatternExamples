@@ -59,12 +59,12 @@ void build_call_objects(auto& factory, auto& objectArrayJson)
         if (objectJson["type"] == "A")
         {
             auto object = factory->buildA(objectJson);
-            object->func();
+            object->print();
         }
         else if (objectJson["type"] == "B")
         {
             auto object = factory->buildB(objectJson);
-            object->func();
+            object->print();
         }
     }
 }

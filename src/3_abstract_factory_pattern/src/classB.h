@@ -3,7 +3,7 @@
 class ClassB
 {
 public:
-    virtual void func() = 0;
+    virtual void print() = 0;
     virtual ~ClassB()   = default;
 };
 
@@ -13,7 +13,7 @@ public:
     ClassB1(int x);
     ClassB1(float y);
 
-    void func() override;
+    void print() override;
 
 private:
     union
@@ -29,7 +29,7 @@ class ClassB2 : public ClassB
 public:
     ClassB2(double x);
 
-    void func() override;
+    void print() override;
 
 private:
     double m_x;

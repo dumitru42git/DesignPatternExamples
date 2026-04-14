@@ -16,9 +16,9 @@ ClassB1::ClassB1(float y)
 {
 }
 
-void ClassB1::func()
+void ClassB1::print()
 {
-    std::println("ClassB1::func() -> either x or y = {}", kind_float ? m_y : m_x);
+    std::println("ClassB1::print() -> either x or y = {}", kind_float ? m_y : m_x);
 }
 
 // ClassB2
@@ -28,7 +28,7 @@ ClassB2::ClassB2(double x)
 {
 }
 
-void ClassB2::func()
+void ClassB2::print()
 {
-    std::println("ClassB2::func() -> x = {}", m_x);
+    std::println("ClassB2::print() -> x = {}", m_x);
 }

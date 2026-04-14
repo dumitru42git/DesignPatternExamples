@@ -40,7 +40,7 @@ int main()
     routine(objects, json4);
 
     for (auto& el : objects)
-        el->func();
+        el->print();
 
     return 0;
 }
