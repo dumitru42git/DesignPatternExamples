@@ -10,7 +10,7 @@
 using Json = nlohmann::json;
 
 std::vector<std::unique_ptr<Class>> objects_from_json(const Json& classArrayJson);
-void                                build_objects(auto& objects, const Builder& builder, int count);
+void                                build_objects(auto& objectStorage, const Builder& builder, int count);
 std::unique_ptr<Builder>            construct_builder(const Json& classJson);
 void                                print_objects(const auto& objects);
 
@@ -50,12 +50,12 @@ std::vector<std::unique_ptr<Class>> objects_from_json(const Json& classArrayJson
     return objects;
 }
 
-void build_objects(auto& objects, const Builder& builder, const int count)
+void build_objects(auto& objectStorage, const Builder& builder, const int count)
 {
     for (int i = 0; i < count; ++i)
     {
         std::unique_ptr<Class> obj = builder.getResult();
-        objects.push_back(std::move(obj));
+        objectStorage.push_back(std::move(obj));
     }
 }
 
