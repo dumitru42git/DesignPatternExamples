@@ -9,3 +9,4 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(json)
 
 add_subdirectory("creational")
+add_subdirectory("structural")
