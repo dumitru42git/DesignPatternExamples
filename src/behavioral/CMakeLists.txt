@@ -2,3 +2,4 @@
 
 add_subdirectory("visitor")
 add_subdirectory("chain_of_responsibility")
+add_subdirectory("command")
