@@ -18,7 +18,7 @@ public:
 
     std::unique_ptr<Node> evaluate(Context& ctx, EvaluateResultCode& code) override
     {
-        auto minus = [](auto operand) -> std::unique_ptr<Node> { return std::make_unique<Value>(-operand); };
+        auto minus = [](auto operand) -> std::unique_ptr<Value> { return std::make_unique<Value>(-operand); };
 
         return UnaryOperation::evaluate<UnaryMinus>(ctx, code, minus);
     }

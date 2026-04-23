@@ -18,7 +18,7 @@ public:
 
     std::unique_ptr<Node> evaluate(Context& ctx, EvaluateResultCode& code) override
     {
-        auto plus = [](auto left, auto right) -> std::unique_ptr<Node> { return std::make_unique<Value>(left + right); };
+        auto plus = [](auto left, auto right) -> std::unique_ptr<Value> { return std::make_unique<Value>(left + right); };
 
         return BinaryOperation::evaluate<BinaryPlus>(ctx, code, plus);
     }
