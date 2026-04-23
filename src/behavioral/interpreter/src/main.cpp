@@ -1,5 +1,6 @@
 #include "context.h"
 #include "node.h"
+#include "nodes/binary_div.h"
 #include "nodes/binary_plus.h"
 #include "nodes/unary_minus.h"
 #include "nodes/value.h"
@@ -47,6 +48,21 @@ int main()
     ctx.set("b", Value(15));
     result3 = node3->evaluate(ctx);
     std::print("Solution:  "), result3->print();
+    std::println();
+
+    // node4
+    ctx.set("c", Value(5));
+    ctx.set("d", Value(2.2));
+    std::unique_ptr<Node> node4 = std::make_unique<BinaryPlus>( //
+        std::make_unique<BinaryDiv>(                            //
+            std::make_unique<Variable>("c"),
+            std::make_unique<Value>(2)),
+        std::make_unique<Variable>("d") //
+    );
+    std::unique_ptr<Node> result4 = node4->evaluate(ctx);
+    std::print("Expression:"), node4->print();
+    std::print("Solution:  "), result4->print();
+    std::println();
 
     return 0;
 }

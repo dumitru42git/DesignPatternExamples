@@ -7,6 +7,7 @@ add_executable (Interpreter
 	"src/node.h"
 	"src/nodes/value.h"
 	"src/nodes/variable.h"
+	"src/nodes/binary_div.h"
 	"src/nodes/binary_plus.h"
 	"src/nodes/binary_operation.h"
 	"src/nodes/unary_operation.h"
