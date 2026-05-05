@@ -95,11 +95,17 @@ private:
     public:
         Thread(ThreadPool& pool, std::stop_token stopToken)
                 : m_pool{pool}
-                , m_thread([&, stopToken]() { run(stopToken); })
+                , m_thread([this, stopToken]() { run(stopToken); })
         {
         }
 
-        void join() { m_thread.join(); }
+        void join()
+        {
+            if (m_thread.joinable())
+            {
+                m_thread.join();
+            }
+        }
 
     private:
         void run(std::stop_token stopToken)
