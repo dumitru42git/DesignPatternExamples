@@ -40,7 +40,7 @@ inline void atomic_only()
             int expected = uninitialized_value;
             if (atomicVar.compare_exchange_strong(expected,
                                                   computedValue,
-                                                  std::memory_order_release,
+                                                  std::memory_order_acq_rel,
                                                   std::memory_order_acquire))
             {
                 std::println("Thread {:6}: pass check 2, stored value = {}", std::this_thread::get_id(), computedValue);
