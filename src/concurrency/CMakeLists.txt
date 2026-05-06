@@ -2,3 +2,4 @@
 
 add_subdirectory("thread_pool")
 add_subdirectory("active_object")
+add_subdirectory("double_checked_locking")
